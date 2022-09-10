@@ -1,0 +1,25 @@
+#quicksort
+def quicksort(left,right,arr):
+    if left<right:
+        partition_pos=partition(left,right,arr)
+        quicksort(left,partition_pos-1,arr)
+        quicksort(partition_pos+1,right,arr)
+    return arr
+def partition(left,right,arr):
+    i=left
+    j=right-1
+    pivot=arr[right]
+    while i<j:
+        while i<right and arr[i]<pivot:
+            i+=1
+        while j>left and arr[j]>=pivot:
+            j-=1
+        if i<j:
+            arr[i],arr[j]=arr[j],arr[i]
+    if arr[i]>pivot:
+        arr[i],arr[right]=arr[right],arr[i]
+    return i
+l=list(map(int,input().split()))
+print(quicksort(0,len(l)-1,l)) 
+
+
